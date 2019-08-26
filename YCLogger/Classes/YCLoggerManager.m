@@ -65,7 +65,9 @@
         //xcode控制台日志
         [DDLog addLogger:[DDTTYLogger sharedInstance] withLevel:LOG_LEVEL_DEBUG];
     }
-    YCLogDebug(@"控制台日志");
+    YCLogDebug(@"第一条日志");
+    YCLogDebug(@"第二条日志");
+    YCLogDebug(@"第三条日志");
 }
 
 - (void)addConsoleLogger:(YCConsoleLoggerModel *)loggerModel {
