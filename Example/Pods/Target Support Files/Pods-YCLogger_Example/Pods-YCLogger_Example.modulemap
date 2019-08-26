@@ -1,0 +1,6 @@
+framework module Pods_YCLogger_Example {
+  umbrella header "Pods-YCLogger_Example-umbrella.h"
+
+  export *
+  module * { export * }
+}

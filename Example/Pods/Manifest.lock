@@ -1,0 +1,16 @@
+PODS:
+  - YCLogger (0.1.0)
+
+DEPENDENCIES:
+  - YCLogger (from `../`)
+
+EXTERNAL SOURCES:
+  YCLogger:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  YCLogger: 3ea26039cffcdf774440b7bc5d2dbb73786b7440
+
+PODFILE CHECKSUM: c31665f1eb0d91df40de162963724017442760d7
+
+COCOAPODS: 1.6.1

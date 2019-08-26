@@ -1,0 +1,6 @@
+framework module YCLogger {
+  umbrella header "YCLogger-umbrella.h"
+
+  export *
+  module * { export * }
+}
