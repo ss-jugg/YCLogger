@@ -13,6 +13,7 @@
 #import "YCLoggerMacor.h"
 #import "YCConsoleLoggerModel.h"
 #import "YCConsoleLoggerFormatter.h"
+#import "YCAPILogger.h"
 
 @interface YCLoggerManager ()
 
@@ -27,6 +28,16 @@
 @end
 
 @implementation YCLoggerManager
+
+#if DEBUG
++ (void)load  {
+    
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        [[YCLoggerManager shareManager] startLogger];
+    });
+}
+#endif
 
 + (instancetype)shareManager {
     
@@ -55,16 +66,19 @@
     //控制台日志
     YCConsoleLoggerFormatter *consoleFormatter = [[YCConsoleLoggerFormatter alloc] init];
     if (@available(iOS 10.0, *)) {
+        //Console.app/Xcode console
         [[DDOSLogger sharedInstance] setLogFormatter:consoleFormatter];
         [DDLog addLogger:[DDOSLogger sharedInstance] withLevel:LOG_LEVEL_DEBUG];
     }else {
         [[DDASLLogger sharedInstance] setLogFormatter:consoleFormatter];
-        [[DDTTYLogger sharedInstance] setLogFormatter:consoleFormatter];
         //Console.app日志
         [DDLog addLogger:[DDASLLogger sharedInstance] withLevel:LOG_LEVEL_DEBUG];
         //xcode控制台日志
         [DDLog addLogger:[DDTTYLogger sharedInstance] withLevel:LOG_LEVEL_DEBUG];
     }
+    
+    //开启网络请求日志
+    [[YCAPILogger sharedInstance] open];
     YCLogDebug(@"第一条日志");
     YCLogDebug(@"第二条日志");
     YCLogDebug(@"第三条日志");
