@@ -6,7 +6,6 @@
 //
 
 #import "YCConsoleLoggerFormatter.h"
-#import "YCConsoleLoggerModel.h"
 #import "YCLoggerManager.h"
 
 @interface YCConsoleLoggerFormatter ()
@@ -29,15 +28,14 @@
 
 - (NSString *)formatLogMessage:(DDLogMessage *)logMessage {
 
-    YCConsoleLoggerModel *loggerModel = [[YCConsoleLoggerModel alloc] init];
-    loggerModel.dateTime = [_dateFormatter stringFromDate:logMessage->_timestamp];
-    loggerModel.fileName = logMessage->_fileName;
-    loggerModel.lineNum = @(logMessage->_line).stringValue;
-    loggerModel.methodName = logMessage->_function;
-    loggerModel.msg = logMessage->_message;
-    
-    [[YCLoggerManager shareManager] addConsoleLogger:loggerModel];
-    return [loggerModel description];
+    NSString *date = [_dateFormatter stringFromDate:logMessage->_timestamp];
+    NSString *fileName = logMessage->_fileName;
+    NSString *lineNum = @(logMessage->_line).stringValue;
+    NSString *methodName = logMessage->_function;
+    NSString *msg = logMessage->_message;
+    NSString *log = [NSString stringWithFormat:@"日期 : %@\n文件 : %@\n行数 : 第%@行\n方法 : %@\n输出 : %@",date,fileName,lineNum,methodName,msg];
+    [[YCLoggerManager shareManager] addConsoleLogger:log];
+    return log;
 }
 
 @end

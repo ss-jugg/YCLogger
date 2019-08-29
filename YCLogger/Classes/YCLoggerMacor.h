@@ -29,8 +29,8 @@
 #define LOG_LEVEL_INFO      (LOG_LEVEL_NOTICE   | LOG_FLAG_INFO)
 #define LOG_LEVEL_DEBUG     (LOG_LEVEL_INFO     | LOG_FLAG_DEBUG)
 
-#define YCLogError(frmt, ...)   LOG_MAYBE(NO,   LOG_LEVEL_CUSTOM, LOG_FLAG_ERROR,  0, nil, __PRETTY_FUNCTION__, frmt, ##__VA_ARGS__)
-#define YCLogWarn(frmt, ...)    LOG_MAYBE(YES,  LOG_LEVEL_CUSTOM, LOG_FLAG_WARN,  0, nil, __PRETTY_FUNCTION__, frmt, ##__VA_ARGS__)
-#define YCLogNotice(frmt, ...)  LOG_MAYBE(YES,  LOG_LEVEL_CUSTOM, LOG_FLAG_NOTICE,  0, nil, __PRETTY_FUNCTION__, frmt, ##__VA_ARGS__)
-#define YCLogInfo(frmt, ...)    LOG_MAYBE(YES,  LOG_LEVEL_CUSTOM, LOG_FLAG_INFO,  0, nil, __PRETTY_FUNCTION__, frmt, ##__VA_ARGS__)
+#define YCLogError(frmt, ...)   LOG_MAYBE(NO,   LOG_LEVEL_ERROR, LOG_FLAG_ERROR,  0, nil, __PRETTY_FUNCTION__, frmt, ##__VA_ARGS__)
+#define YCLogWarn(frmt, ...)    LOG_MAYBE(YES,  LOG_LEVEL_WARN, LOG_FLAG_WARN,  0, nil, __PRETTY_FUNCTION__, frmt, ##__VA_ARGS__)
+#define YCLogNotice(frmt, ...)  LOG_MAYBE(YES,  LOG_LEVEL_NOTICE, LOG_FLAG_NOTICE,  0, nil, __PRETTY_FUNCTION__, frmt, ##__VA_ARGS__)
+#define YCLogInfo(frmt, ...)    LOG_MAYBE(YES,  LOG_LEVEL_INFO, LOG_FLAG_INFO,  0, nil, __PRETTY_FUNCTION__, frmt, ##__VA_ARGS__)
 #define YCLogDebug(frmt, ...)   LOG_MAYBE(YES,  LOG_LEVEL_DEBUG, LOG_FLAG_DEBUG,  0, nil, __PRETTY_FUNCTION__, frmt, ##__VA_ARGS__)

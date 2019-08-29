@@ -11,7 +11,6 @@
 #import "YCFileManager.h"
 #import "YCFileLoggerFormatter.h"
 #import "YCLoggerMacor.h"
-#import "YCConsoleLoggerModel.h"
 #import "YCConsoleLoggerFormatter.h"
 #import "YCAPILogger.h"
 
@@ -24,20 +23,10 @@
 /* Xcode控制台日志 */
 @property (nonatomic, strong) DDTTYLogger *consoleLogger;
 /* 控制台日志 */
-@property (nonatomic, strong,readwrite) NSMutableArray<YCConsoleLoggerModel *> *loggerModels;
+@property (nonatomic, strong,readwrite) NSMutableArray<NSString *> *loggers;
 @end
 
 @implementation YCLoggerManager
-
-#if DEBUG
-+ (void)load  {
-    
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        [[YCLoggerManager shareManager] startLogger];
-    });
-}
-#endif
 
 + (instancetype)shareManager {
     
@@ -46,7 +35,7 @@
     dispatch_once(&onceToken, ^{
         _instance = [[YCLoggerManager alloc] init];
         _instance.fileConfig = [YCFileManagerConfig defaultConfig];
-        _instance.loggerModels = [[NSMutableArray alloc] init];
+        _instance.loggers = [[NSMutableArray alloc] init];
     });
     return _instance;
 }
@@ -80,13 +69,19 @@
     //开启网络请求日志
     [[YCAPILogger sharedInstance] open];
     YCLogDebug(@"第一条日志");
-    YCLogDebug(@"第二条日志");
-    YCLogDebug(@"第三条日志");
+    YCLogInfo(@"第二条日志");
+    YCLogNotice(@"第三条日志");
+    YCLogWarn(@"第四条日志");
+    YCLogError(@"第五天日志");
 }
 
-- (void)addConsoleLogger:(YCConsoleLoggerModel *)loggerModel {
+- (void)addConsoleLogger:(NSString *)log {
     
-    [self.loggerModels addObject:loggerModel];
+    [self.loggers addObject:log];
+}
+
+- (void)removeAllConsoleLoggers {
+    [self.loggers removeAllObjects];
 }
 
 - (NSArray<NSString *> *)logFileNames {

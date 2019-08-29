@@ -9,5 +9,4 @@
 #import <YCLogger/YCLoggerMacor.h>
 #import <YCLogger/YCFileManagerConfig.h>
 #import <YCLogger/YCDynamicLogLevel.h>
-#import <YCLogger/YCConsoleLoggerModel.h>
 #import <YCLogger/YCAPILogger.h>

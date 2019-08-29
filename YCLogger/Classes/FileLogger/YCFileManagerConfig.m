@@ -8,9 +8,9 @@
 #import "YCFileManagerConfig.h"
 
 //日志文件路径
-static NSString *const kYCLoggerFilePath = @"YCLoggers";
+static NSString *const kYCLoggerFilePath = @"DigitLoggers";
 //压缩包名
-static NSString *const kZipFileName = @"/YCLogger.zip";
+static NSString *const kZipFileName = @"/DigitLoggers.zip";
 
 NSUInteger         const kYCDefaultLogMaxNumLogFiles   = 20;                // 20 Files
 unsigned long long const kYCDefaultLogFilesDiskQuota   = 1024 * 1024 * 10; // 10 MB

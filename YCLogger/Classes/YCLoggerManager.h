@@ -16,14 +16,14 @@ NS_ASSUME_NONNULL_BEGIN
 /* 文件日志配置项 */
 @property (nonatomic, strong) YCFileManagerConfig *fileConfig;
 /* 控制台日志 */
-@property (nonatomic, strong,readonly) NSMutableArray<YCConsoleLoggerModel *> *loggerModels;
+@property (nonatomic, strong,readonly) NSMutableArray<NSString *> *loggers;
 
 - (void)startLogger;
 
 - (NSArray<NSString *> *)logFileNames;
 
-- (void)addConsoleLogger:(YCConsoleLoggerModel *)loggerModel;
-
+- (void)addConsoleLogger:(NSString *)log;
+- (void)removeAllConsoleLoggers;
 @end
 
 NS_ASSUME_NONNULL_END
