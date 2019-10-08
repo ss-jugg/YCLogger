@@ -68,11 +68,6 @@
     
     //开启网络请求日志
     [[YCAPILogger sharedInstance] open];
-    YCLogDebug(@"第一条日志");
-    YCLogInfo(@"第二条日志");
-    YCLogNotice(@"第三条日志");
-    YCLogWarn(@"第四条日志");
-    YCLogError(@"第五天日志");
 }
 
 - (void)addConsoleLogger:(NSString *)log {

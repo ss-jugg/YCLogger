@@ -31,9 +31,9 @@
     NSString *date = [_dateFormatter stringFromDate:logMessage->_timestamp];
     NSString *fileName = logMessage->_fileName;
     NSString *lineNum = @(logMessage->_line).stringValue;
-    NSString *methodName = logMessage->_function;
+    NSString *methodName = [[[logMessage->_function componentsSeparatedByString:@" "] lastObject] stringByReplacingOccurrencesOfString:@"]" withString:@""];
     NSString *msg = logMessage->_message;
-    NSString *log = [NSString stringWithFormat:@"日期 : %@\n文件 : %@\n行数 : 第%@行\n方法 : %@\n输出 : %@",date,fileName,lineNum,methodName,msg];
+    NSString *log = [NSString stringWithFormat:@"date : %@\nfile : %@\nline : %@\nmethod : %@\nmsg : %@",date,fileName,lineNum,methodName,msg];
     [[YCLoggerManager shareManager] addConsoleLogger:log];
     return log;
 }
