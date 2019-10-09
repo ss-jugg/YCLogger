@@ -68,7 +68,7 @@
     NSString *func = logMessage->_function;
     NSString *logMsg = logMessage->_message;
     
-    NSString *log = [NSString stringWithFormat:@"[%@%@]%@_fileName:%@_func:%@_line:%ld_msg:%@\n",logLevel,dateTime,_appInfo,name,func,lineNum,logMsg];
+    NSString *log = [NSString stringWithFormat:@"[%@%@]%@_file:%@_func:%@_line:%ld_msg:%@\n",logLevel,dateTime,_appInfo,name,func,lineNum,logMsg];
     return log;
 }
 

@@ -72,7 +72,7 @@
 
 - (void)addConsoleLogger:(NSString *)log {
     
-    [self.loggers addObject:log];
+    [self.loggers insertObject:log atIndex:0];
 }
 
 - (void)removeAllConsoleLoggers {
