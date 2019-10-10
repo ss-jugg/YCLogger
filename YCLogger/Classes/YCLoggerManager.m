@@ -49,7 +49,7 @@
     fileLogger.maximumFileSize = self.fileConfig.maximumFileSize;
     fileLogger.rollingFrequency = self.fileConfig.rollingFrequency;
     
-    //根据自定义日志等级，记录文件日志，默认等级 LOG_LEVEL_INFO
+    //根据自定义日志等级，记录文件日志，默认等级 LOG_LEVEL_WARN
     [DDLog addLogger:fileLogger withLevel:LOG_LEVEL_CUSTOM];
     
     //控制台日志

@@ -13,7 +13,7 @@
 + (void)load {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        [YCDynamicLogLevel ddSetLogLevel:LOG_LEVEL_INFO];
+        [YCDynamicLogLevel ddSetLogLevel:LOG_LEVEL_WARN];
     });
 }
 
