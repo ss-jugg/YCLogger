@@ -13,15 +13,15 @@
 #import "YCLoggerMacor.h"
 #import "YCConsoleLoggerFormatter.h"
 #import "YCAPILogger.h"
+#import "YCLoggerReporter.h"
 
 @interface YCLoggerManager ()
+{
+    dispatch_semaphore_t semaphore;
+}
 
 /* 文件日志 */
 @property (nonatomic, strong) DDFileLogger *fileLogger;
-/* 发送日志语句到苹果的日志系统，以便它们显示在Console.app上 */
-@property (nonatomic, strong) DDASLLogger *asLogger;
-/* Xcode控制台日志 */
-@property (nonatomic, strong) DDTTYLogger *consoleLogger;
 /* 控制台日志 */
 @property (nonatomic, strong,readwrite) NSMutableArray<NSString *> *loggers;
 @end
@@ -34,10 +34,19 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         _instance = [[YCLoggerManager alloc] init];
-        _instance.fileConfig = [YCFileManagerConfig defaultConfig];
-        _instance.loggers = [[NSMutableArray alloc] init];
+
     });
     return _instance;
+}
+
+- (instancetype)init {
+    
+    if (self = [super init]) {
+        self.fileConfig = [YCFileManagerConfig defaultConfig];
+        self.loggers = [[NSMutableArray alloc] init];
+        semaphore = dispatch_semaphore_create(1);
+    }
+    return self;
 }
 
 - (void)startLogger {
@@ -48,7 +57,7 @@
     [fileLogger setLogFormatter:[[YCFileLoggerFormatter alloc] init]];
     fileLogger.maximumFileSize = self.fileConfig.maximumFileSize;
     fileLogger.rollingFrequency = self.fileConfig.rollingFrequency;
-    
+    self.fileLogger = fileLogger;
     //根据自定义日志等级，记录文件日志，默认等级 LOG_LEVEL_WARN
     [DDLog addLogger:fileLogger withLevel:LOG_LEVEL_CUSTOM];
     
@@ -66,20 +75,34 @@
         [DDLog addLogger:[DDTTYLogger sharedInstance] withLevel:LOG_LEVEL_DEBUG];
     }
     
-    //开启网络请求日志
     [[YCAPILogger sharedInstance] open];
+    [[YCLoggerReporter sharedReporter] checkLogNeedUpload];
 }
 
 - (void)addConsoleLogger:(NSString *)log {
     
+    dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
     [self.loggers insertObject:log atIndex:0];
+    dispatch_semaphore_signal(semaphore);
 }
 
 - (void)removeAllConsoleLoggers {
+    dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
     [self.loggers removeAllObjects];
+    dispatch_semaphore_signal(semaphore);
+}
+
+- (NSArray<NSString *> *)logFilePaths {
+    return [self.fileLogger.logFileManager sortedLogFilePaths];
 }
 
 - (NSArray<NSString *> *)logFileNames {
     return [self.fileLogger.logFileManager sortedLogFileNames];
 }
+
+- (NSString *)zipPath {
+    
+    return [self.fileConfig.logsDirectory stringByAppendingString:self.fileConfig.zipName];
+}
+
 @end

@@ -12,10 +12,10 @@ static NSString *const kYCLoggerFilePath = @"YCLoggers";
 //压缩包名
 static NSString *const kZipFileName = @"/YCLoggers.zip";
 
-NSUInteger         const kYCDefaultLogMaxNumLogFiles   = 20;                // 20 Files
-unsigned long long const kYCDefaultLogFilesDiskQuota   = 1024 * 1024 * 10; // 10 MB
-unsigned long long const kYCDefaultLogMaxFileSize      = 1024 * 500;      // 500 KB
-NSTimeInterval     const kYCDefaultLogRollingFrequency = 60 * 60 * 24;     // 24 Hours
+NSUInteger         const kYCDefaultLogMaxNumLogFiles   = 0;                //最大归档数量，默认不可用
+unsigned long long const kYCDefaultLogFilesDiskQuota   = 1024 * 1024 * 30; // 日志最大磁盘存储 30 MB
+unsigned long long const kYCDefaultLogMaxFileSize      = 1024 * 500;      // 单个文件最大 500 KB
+NSTimeInterval     const kYCDefaultLogRollingFrequency = 0;     //日志回滚周期,默认不可用
 
 
 @implementation YCFileManagerConfig

@@ -20,10 +20,27 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)startLogger;
 
-- (NSArray<NSString *> *)logFileNames;
-
 - (void)addConsoleLogger:(NSString *)log;
 - (void)removeAllConsoleLoggers;
+
+
+/**
+ 获取所有按日期降序的日志文件路径
+
+ @return 日志文件路径列表
+ */
+- (NSArray<NSString *> *)logFilePaths;
+
+
+/**
+ 获取所有按日期降序的日志文件名
+
+ @return 文件名列表
+ */
+- (NSArray<NSString *> *)logFileNames;
+
+- (NSString *)zipPath;
+
 @end
 
 NS_ASSUME_NONNULL_END

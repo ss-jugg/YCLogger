@@ -18,4 +18,5 @@ TODO: Add long description of the pod here.
   s.source_files = 'YCLogger/Classes/**/*'
   
   s.dependency 'CocoaLumberjack'
+  s.dependency 'SSZipArchive'
 end
