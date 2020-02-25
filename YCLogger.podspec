@@ -19,4 +19,5 @@ TODO: Add long description of the pod here.
   
   s.dependency 'CocoaLumberjack'
   s.dependency 'SSZipArchive'
+  s.dependency 'AFNetworking'
 end

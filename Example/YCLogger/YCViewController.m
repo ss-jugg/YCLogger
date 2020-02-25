@@ -7,7 +7,7 @@
 //
 
 #import "YCViewController.h"
-
+#import <YCLogger/YCLogger.h>
 @interface YCViewController ()
 
 @end
@@ -17,13 +17,23 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
+    self.navigationItem.title = @"日志";
+    [[YCLoggerManager shareManager] startLogger];
+    [self outputLoggers];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)outputLoggers {
+    
+    YCLogDebug(@"这是一条调试日志");
+    YCLogInfo(@"这是一条信息日志");
+    YCLogWarn(@"这是一条警告日志");
+    YCLogError(@"这是一条错误日志");
 }
 
 @end

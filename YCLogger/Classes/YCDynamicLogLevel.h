@@ -12,6 +12,7 @@ static DDLogLevel d_logLevel;
 
 @interface YCDynamicLogLevel : NSObject<DDRegisteredDynamicLogging>
 
++ (void)ddSetLogLevel:(DDLogLevel)ddLogLevel;
 
 @end
 

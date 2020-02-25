@@ -16,7 +16,18 @@
     "tag": "0.1.0"
   },
   "platforms": {
-    "ios": "8.0"
+    "ios": "9.0"
   },
-  "source_files": "YCLogger/Classes/**/*"
+  "source_files": "YCLogger/Classes/**/*",
+  "dependencies": {
+    "CocoaLumberjack": [
+
+    ],
+    "SSZipArchive": [
+
+    ],
+    "AFNetworking": [
+
+    ]
+  }
 }
