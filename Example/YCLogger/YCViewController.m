@@ -18,7 +18,6 @@
 {
     [super viewDidLoad];
     self.navigationItem.title = @"日志";
-    [[YCLoggerManager shareManager] startLogger];
     [self outputLoggers];
 }
 
@@ -30,6 +29,7 @@
 
 - (void)outputLoggers {
     
+    //MARK:输出不同级别的日志
     YCLogDebug(@"这是一条调试日志");
     YCLogInfo(@"这是一条信息日志");
     YCLogWarn(@"这是一条警告日志");

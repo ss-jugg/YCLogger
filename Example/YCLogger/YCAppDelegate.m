@@ -8,7 +8,7 @@
 
 #import "YCAppDelegate.h"
 #import "YCViewController.h"
-
+#import <YCLogger/YCLogger.h>
 @implementation YCAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
@@ -17,6 +17,10 @@
     self.window.backgroundColor = [UIColor whiteColor];
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:[[YCViewController alloc] init]];
     self.window.rootViewController = nav;
+    
+    //MARK:开启日志组件
+    [[YCLoggerManager shareManager] startLogger];
+    
     [self.window makeKeyAndVisible];
     return YES;
 }
